@@ -74,3 +74,26 @@ model Message {
   read      Boolean  @default(false)
   createdAt DateTime @default(now())
 }
+
+model Experience {
+  id               String   @id @default(uuid())
+  company          String
+  role             String
+  startDate        String // YYYY-MM
+  endDate          String? // YYYY-MM or null for current
+  description      String?
+  certificationUrl String? // URL to certificate image or PDF
+  current          Boolean  @default(false)
+  createdAt        DateTime @default(now())
+}
+
+model Education {
+  id          String   @id @default(uuid())
+  institution String
+  degree      String
+  startDate   String // YYYY-MM
+  endDate     String? // YYYY-MM or null for current
+  description String?
+  current     Boolean  @default(false)
+  createdAt   DateTime @default(now())
+}

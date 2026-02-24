@@ -1,0 +1,13 @@
+{
+    "name": "dynamic-flare",
+    "version": "1.0.0",
+    "description": "AI/ML Portfolio - Full Stack App",
+    "scripts": {
+        "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+        "server": "npm run dev --prefix server",
+        "client": "npm run dev --prefix client"
+    },
+    "devDependencies": {
+        "concurrently": "^9.1.2"
+    }
+}

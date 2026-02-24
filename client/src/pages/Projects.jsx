@@ -8,6 +8,10 @@ import { useNavigate } from 'react-router-dom';
 const Projects = () => {
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
+    const isAdmin = user?.role === 'ADMIN';
+
+    // Clean URL - remove embedded newlines/spaces from DB values
+    const cleanUrl = (url) => url ? url.replace(/\s+/g, '').trim() : url;
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedProject, setSelectedProject] = useState(null);
@@ -76,9 +80,10 @@ const Projects = () => {
                     >
                         {project.imageUrl && (
                             <img
-                                src={project.imageUrl}
+                                src={cleanUrl(project.imageUrl)}
                                 alt={project.title}
                                 style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '4px' }}
+                                onError={(e) => { e.target.style.display = 'none'; }}
                             />
                         )}
                         <h3 style={{ margin: '1rem 0 0.5rem' }}>{project.title}</h3>
@@ -117,10 +122,10 @@ const Projects = () => {
                             )}
                         </div>
 
-                        {user?.role === 'ADMIN' && (
+                        {isAdmin && (
                             <div style={{ marginTop: '1rem', borderTop: '1px solid var(--border-color)', paddingTop: '1rem', display: 'flex', gap: '0.5rem' }}>
                                 <button
-                                    onClick={() => navigate('/admin/dashboard')}
+                                    onClick={() => navigate('/admin')}
                                     className="btn btn-outline"
                                     style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem' }}
                                 >
@@ -186,9 +191,10 @@ const Projects = () => {
 
                         {selectedProject.imageUrl && (
                             <img
-                                src={selectedProject.imageUrl}
+                                src={cleanUrl(selectedProject.imageUrl)}
                                 alt={selectedProject.title}
                                 style={{ width: '100%', height: '300px', objectFit: 'cover', borderRadius: '8px', marginBottom: '1.5rem' }}
+                                onError={(e) => { e.target.style.display = 'none'; }}
                             />
                         )}
 
