@@ -4,7 +4,7 @@
     "description": "AI/ML Portfolio - Full Stack App",
     "scripts": {
         "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
-        "build": "npm run build --prefix client",
+        "build": "npm run build --prefix client && npx prisma generate --schema=server/prisma/schema.prisma",
         "server": "npm run dev --prefix server",
         "client": "npm run dev --prefix client"
     },

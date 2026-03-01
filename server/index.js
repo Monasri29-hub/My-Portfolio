@@ -37,11 +37,29 @@ app.get('/', (req, res) => {
     res.send('API is running...');
 });
 
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
 });
+
+// Serve static assets in production
+if (process.env.NODE_ENV === 'production' || true) { // Force for Vercel
+    const clientPath = path.join(__dirname, '../client/dist');
+    app.use(express.static(clientPath));
+
+    app.get('*', (req, res, next) => {
+        // Only serve index.html for non-API routes
+        if (req.path.startsWith('/api')) return next();
+        res.sendFile(path.resolve(clientPath, 'index.html'));
+    });
+}
 
 if (process.env.NODE_ENV !== 'production') {
     app.listen(PORT, () => {
