@@ -159,13 +159,50 @@ const About = () => {
                     </div>
                 </div>
 
-                {/* Education Section */}
+                {/* Education Section - custom styled like About heading */}
                 {education.length > 0 && (
-                    <Section title="🎓 Education" items={education} type="edu" />
+                    <div style={{ marginTop: '4rem', textAlign: 'center' }}>
+                        <h2 style={{
+                            fontSize: '2.5rem',
+                            background: 'linear-gradient(to right, #ec4899, #8b5cf6)',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            marginBottom: '2rem'
+                        }}>Education</h2>
+                        <div style={{ borderLeft: '2px solid var(--border-color)', paddingLeft: '2rem', textAlign: 'left', maxWidth: '800px', margin: '0 auto', position: 'relative' }}>
+                            {education.map((item, index) => (
+                                <motion.div
+                                    key={item.id}
+                                    initial={{ opacity: 0, x: -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: index * 0.1 }}
+                                    style={{ marginBottom: '2.5rem', position: 'relative' }}
+                                >
+                                    <div
+                                        style={{
+                                            position: 'absolute',
+                                            left: '-2.6rem',
+                                            top: '0.3rem',
+                                            width: '0.9rem',
+                                            height: '0.9rem',
+                                            background: 'var(--primary-color)',
+                                            borderRadius: '50%',
+                                            boxShadow: '0 0 10px var(--primary-color)'
+                                        }}
+                                    />
+                                    <div style={{ marginBottom: '0.5rem' }}>
+                                        <h4 style={{ fontSize: '1.2rem', margin: '0 0 0.1rem', fontWeight: '600' }}>{item.degree}</h4>
+                                        <div style={{ fontSize: '1rem', color: 'var(--accent-color)', fontWeight: '500', marginBottom: '0.2rem' }}>{item.institution}</div>
+                                        <span style={{ fontSize: '0.85rem', color: '#666', display: 'block' }}>{item.startDate} — {item.current ? 'Present' : item.endDate}</span>
+                                    </div>
+                                    {item.description && (
+                                        <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', margin: '0.5rem 0 0', fontSize: '0.95rem' }}>{item.description}</p>
+                                    )}
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
                 )}
-
-
-
             </motion.div>
         </div>
     );
