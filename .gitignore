@@ -1,5 +1,5 @@
 # Database
-*.db
+# *.db (Allow for initial deployment)
 *.db-journal
 
 # Environment
