@@ -2,13 +2,28 @@
     "name": "dynamic-flare",
     "version": "1.0.0",
     "description": "AI/ML Portfolio - Full Stack App",
+    "type": "module",
     "scripts": {
         "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
-        "build": "npm run build --prefix client && npx prisma generate --schema=server/prisma/schema.prisma",
+        "build": "npm install --prefix client && npm run build --prefix client && npx prisma generate --schema=server/prisma/schema.prisma",
         "server": "npm run dev --prefix server",
         "client": "npm run dev --prefix client"
     },
+    "dependencies": {
+        "@prisma/client": "^5.22.0",
+        "bcryptjs": "^3.0.3",
+        "cookie-parser": "^1.4.7",
+        "cors": "^2.8.6",
+        "dotenv": "^17.2.4",
+        "express": "^5.2.1",
+        "express-async-handler": "^1.2.0",
+        "helmet": "^8.1.0",
+        "jsonwebtoken": "^9.0.3",
+        "morgan": "^1.10.1",
+        "multer": "^2.0.2"
+    },
     "devDependencies": {
-        "concurrently": "^9.1.2"
+        "concurrently": "^9.1.2",
+        "prisma": "^5.2.0"
     }
 }
