@@ -4,6 +4,7 @@
     "description": "AI/ML Portfolio - Full Stack App",
     "scripts": {
         "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+        "build": "npm run build --prefix client",
         "server": "npm run dev --prefix server",
         "client": "npm run dev --prefix client"
     },
